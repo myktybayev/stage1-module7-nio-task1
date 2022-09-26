@@ -15,7 +15,7 @@ public class FileReader {
         int age = 0;
         long phoneNumber = 0;
 
-        try(RandomAccessFile aFile = new RandomAccessFile("src/main/resources/Profile.txt", "r");
+        try(RandomAccessFile aFile = new RandomAccessFile(file, "r");
             FileChannel inChannel = aFile.getChannel();) {
 
             long fileSize = inChannel.size();
