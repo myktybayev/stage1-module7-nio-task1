@@ -11,7 +11,9 @@ public class FileReader {
 
     public Profile getDataFromFile(File file) {
         Profile profile = null;
-        String allStr = "", name = "", email = "";
+        StringBuilder allStr = new StringBuilder();
+        String name = "";
+        String email = "";
         int age = 0;
         long phoneNumber = 0;
 
@@ -26,23 +28,23 @@ public class FileReader {
             for (int i = 0; i < fileSize; i++) {
                 char c = (char) buffer.get();
                 if(c == '\n'){
-                    if(allStr.contains("Name")){
+                    if(allStr.toString().contains("Name")){
                         name = allStr.substring(allStr.indexOf(" ")+1);
-                        allStr = "";
+                        allStr = new StringBuilder();
                     }
-                    else if(allStr.contains("Age")){
+                    else if(allStr.toString().contains("Age")){
                         age = Integer.parseInt(allStr.substring(allStr.indexOf(" ")+1));
-                        allStr = "";
+                        allStr = new StringBuilder();
                     }
-                    else if(allStr.contains("Email")){
+                    else if(allStr.toString().contains("Email")){
                         email = allStr.substring(allStr.indexOf(" ")+1);
-                        allStr = "";
-                    }else if(allStr.contains("Phone")){
+                        allStr = new StringBuilder();
+                    }else if(allStr.toString().contains("Phone")){
                         phoneNumber = Long.parseLong(allStr.substring(allStr.indexOf(" ")+1));
-                        allStr = "";
+                        allStr = new StringBuilder();
                     }
                 }else {
-                    allStr += c;
+                    allStr.append(c);
                 }
             }
             profile = new Profile(name, age, email,phoneNumber);
